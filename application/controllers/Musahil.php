@@ -119,4 +119,13 @@ class Musahil extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Silahkan login ulang, pastikan data anda sudah benar. Kalau masih error, hubungi panitia pendaftaran.</div>');
         redirect('.');
     }
+
+    public function delete($chapter, $id)
+    {
+        if ($chapter == 'token') {
+            $this->m_musahil->delete_token($id);
+            redirect(base_url(($this->session->userdata('id_level') == 1337 ? 'admin' : 'musahil') . '/manage/token'));
+        }
+        redirect('.');
+    }
 }

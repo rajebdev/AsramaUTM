@@ -54,7 +54,7 @@
                                     <?php endforeach; ?>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="show_data">
                                 <?php $i = 1;
                                 foreach ($table as $key => $row) : ?>
                                     <tr role="row" class="odd">
@@ -62,9 +62,9 @@
                                         <td><?= $row->nim ?></td>
                                         <td><?= $row->password ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                            <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            <!-- <i class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
+                                            <button class="btn btn-success" type="button"><i class="fas fa-edit"></i></button>
+                                            <a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil') . '/delete/token/') . $row->nim ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

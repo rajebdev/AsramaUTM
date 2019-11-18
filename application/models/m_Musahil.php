@@ -27,4 +27,20 @@ class m_Musahil extends CI_Model
         $this->db->query("INSERT INTO tbl_pendaftaran VALUES ('" . $nim . "', '', '000', '0', '', '', '0', '', '', '', '', '" . $date . "', 'U" . $nim . "')");
         return $this->db->affected_rows();
     }
+
+    public function delete_token($nim)
+    {
+        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array();
+        $this->db->query("DELETE FROM tbl_berkas WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_hobi WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_orangtua WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_organisasi WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_prestasi WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_riwayatpendidikan WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_riwayatsakit WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_validasiberkas WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_pendaftaran WHERE nim='" . $nim . "'");
+        $this->db->query("DELETE FROM tbl_login WHERE username='" . $username . "'");
+        return $this->db->affected_rows() > 0;
+    }
 }
