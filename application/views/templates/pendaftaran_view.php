@@ -31,6 +31,8 @@
 						<div class="card-body">
 							<table class="mb-0 table table-striped">
 								<h3 class="text-center mb-4 text-uppercase">Data Pendaftaran</h3>
+
+								<?= $this->session->flashdata('message'); ?>
 								<tbody>
 									<tr>
 										<th scope="row" class="text-uppercase" style="width: 50%;">nama</th>
@@ -61,24 +63,6 @@
 										<td class="word-wrap"><?= $user['no_telp'] ?></td>
 									</tr>
 									<tr>
-										<th scope="row" class="text-uppercase" style="width: 50%;">hobi/kebiasaan</th>
-										<td class="word-wrap">
-											<ol class="list-group list-group-flush">
-												<?php foreach ($hobi as $key => $value) {
-													echo "<li class='list-group-item'> - " . $value . "</li>";
-												}
-												?>
-											</ol>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row" class="text-uppercase" style="width: 50%;">alamat asal</th>
-										<td class="word-wrap"><?= $user['alamat'] ?></td>
-									</tr>
-									<tr>
-										<th scope="row" class="text-uppercase" style="width: 50%;" colspan="2">riwayat pendidikan</th>
-									</tr>
-									<tr>
 										<th scope="row" class="text-uppercase" style="width: 50%;">alamat asal</th>
 										<td class="word-wrap"><?= $user['alamat'] ?></td>
 									</tr>
@@ -95,7 +79,7 @@
 									<h5 class="card-title">Upload Berkas</h5>
 									<p>Lengkapi persyaratan pendaftaran</p>
 									<center>
-										<a href="<?= base_url(); ?>user/pendaftaran/berkas" class="btn btn-primary" style="width:100%;"><i class="fa fa-upload"></i> Berkas Pendaftaran</a>
+										<a href="<?= base_url(); ?>user/berkas/view" class="btn btn-primary" style="width:100%;"><i class="fa fa-upload"></i> Berkas Pendaftaran</a>
 									</center>
 								</div>
 							</div>
@@ -106,7 +90,7 @@
 									<h5 class="card-title">Edit Pendaftaran</h5>
 									<p>Perubahan pada data pendaftaran</p>
 									<center>
-										<a href="<?= base_url(); ?>user/pendaftaran/edit" class="btn btn-primary" style="width:100%;"><i class="fa fa-edit"></i> Edit Pendaftaran</a>
+										<a href="<?= base_url(); ?>user/profile/edit" class="btn btn-primary" style="width:100%;"><i class="fa fa-edit"></i> Edit Pendaftaran</a>
 									</center>
 								</div>
 							</div>

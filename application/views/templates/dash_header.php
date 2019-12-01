@@ -508,21 +508,51 @@
 							</li>
 							<?php if ($level == 100) { ?>
 								<li>
-									<a href="<?= base_url('user/pendaftaran/view') ?>" <?= $main['menu'] == 'View Pendaftaran' ? 'class="mm-active"' : ''; ?>>
+									<a href="<?= base_url('user/profile/view') ?>" <?= $main['menu'] == 'View Pendaftaran' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-user">
-										</i>View Pendaftaran
+										</i>Data Profile
 									</a>
 								</li>
 								<li>
-									<a href="<?= base_url('user/pendaftaran/edit') ?>" <?= $main['menu'] == 'Edit Pendaftaran' ? 'class="mm-active"' : ''; ?>>
+									<a href="<?= base_url('user/berkas/view') ?>" <?= $main['menu'] == 'berkas' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-user">
-										</i>Edit Pendaftaran
+										</i>Data Berkas
 									</a>
 								</li>
 								<li>
-									<a href="<?= base_url('user/pendaftaran/status') ?>" <?= $main['menu'] == 'Status Pendaftaran' ? 'class="mm-active"' : ''; ?>>
+									<a href="<?= base_url('user/hobi/view') ?>" <?= $main['menu'] == 'hobi' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-user">
-										</i>Status Pendaftaran
+										</i>Data Hobi
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('user/orangtua/view') ?>" <?= $main['menu'] == 'orangtua' ? 'class="mm-active"' : ''; ?>>
+										<i class="metismenu-icon pe-7s-user">
+										</i>Data Orang Tua
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('user/organisasi/view') ?>" <?= $main['menu'] == 'organisasi' ? 'class="mm-active"' : ''; ?>>
+										<i class="metismenu-icon pe-7s-user">
+										</i>Data Organisasi
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('user/prestasi/view') ?>" <?= $main['menu'] == 'prestasi' ? 'class="mm-active"' : ''; ?>>
+										<i class="metismenu-icon pe-7s-user">
+										</i>Data Prestasi
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('user/pendidikan/view') ?>" <?= $main['menu'] == 'pendidikan' ? 'class="mm-active"' : ''; ?>>
+										<i class="metismenu-icon pe-7s-user">
+										</i>Data Riwayat Pendidikan
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('user/riwayatsakit/view') ?>" <?= $main['menu'] == 'riwayatsakit' ? 'class="mm-active"' : ''; ?>>
+										<i class="metismenu-icon pe-7s-user">
+										</i>Data Riwayat Sakit
 									</a>
 								</li>
 							<?php } ?>

@@ -42530,11 +42530,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 	margin-bottom: 0
 }
 
-form .form-control {
+/* form .form-control {
 	font-size: .8rem;
 	border-radius: 10rem;
 	padding: 1.5rem 1rem;
-}
+} */
 
 .input-group>.select2-container--bootstrap4>.selection>.select2-selection.form-control {
 	float: none
