@@ -3,14 +3,20 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 01:58 AM
+-- Generation Time: Dec 12, 2019 at 08:26 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `asramadb`
@@ -34,6 +40,22 @@ CREATE TABLE `tbl_berkas` (
   `kwitansi_karakter` char(1) DEFAULT NULL,
   `surat_dokter` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_berkas`
+--
+
+INSERT INTO `tbl_berkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES
+('170231100031', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170331100201', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170211100003', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170221100121', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170411100003', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170411100061', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170511100038', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170521100076', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170611100032', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+('170621100021', '1', '1', '1', '1', '1', '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -212,7 +234,7 @@ CREATE TABLE `tbl_login` (
 
 INSERT INTO `tbl_login` (`username`, `id_level`, `password`, `user_created`, `photo`) VALUES
 ('admin', '1337', '21232f297a57a5a743894a0e4a801fc3', '2019-11-06 00:00:00', 'default.jpg'),
-('M170411100003', '999', '76eb649c047cbecad7c36e71374bc9a5', '2019-11-09 14:00:00', 'defaulft.jpg'),
+('M170411100003', '999', '76eb649c047cbecad7c36e71374bc9a5', '2019-11-09 14:00:00', 'default.jpg'),
 ('M170411100061', '999', '9c66f75befa26d06779a8db1a1518061', '2019-11-06 00:00:00', 'default.jpg'),
 ('U170211100003', '100', '9693519a041ae1b4fca8f3f7f3d17234', '2019-11-13 00:00:00', 'default.jpg'),
 ('U170221100121', '100', '45a73564aacc33cff0bf8bf9e72370f5', '2019-11-14 00:00:00', 'default.jpg'),
@@ -260,6 +282,22 @@ CREATE TABLE `tbl_orangtua` (
   `pekerjaan_ibu` varchar(255) DEFAULT NULL,
   `telp_ibu` varchar(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_orangtua`
+--
+
+INSERT INTO `tbl_orangtua` (`nim`, `nama_ayah`, `pekerjaan_ayah`, `telp_ayah`, `nama_ibu`, `pekerjaan_ibu`, `telp_ibu`) VALUES
+('170211100003', 'SYAIFUL', 'PNS', '081234411321', 'EVI WIDYAWATI', 'PNS', '081234411322'),
+('170221100121', 'NURDIN', 'TNI', '082234411312', 'NUR FARIKHAH', 'Bidan', '082234411389'),
+('170231100031', 'AKBAR TRI WICAKSONO', 'Polisi', '085234932321', 'RINI ANGGRAINI', 'Guru', '085234932327'),
+('170331100201', 'GALIH RIZKI', 'Dosen', '085234932731', 'DESSY SETIAWANTI ', 'Guru', '085234932739'),
+('170411100003', 'KUSWANDI', 'Polisi', '081232176321', 'VINA RESTIKA', 'Perawat', '081232176328'),
+('170411100061', 'ARI SAPUTRA', 'Dokter', '089832176328', 'NOFIA ULFA', 'PNS', '089832176551'),
+('170511100038', 'ARIF SUCIPTO', 'Petani', '085734411321', 'KIKI YULIANTI ', 'Ibu Rumah Tangga', '085734411399'),
+('170521100076', 'FAHMI ISKANDAR', 'TNI', '085734411399', 'NUR FATIMAH', 'Ibu Rumah Tangga', '085734411398'),
+('170611100032', 'FARHAN KAMIL', 'PNS', '081235822321', 'NURJANNAH ', 'Wirausaha', '081235822371'),
+('170621100021', 'ACHMAD FAJAR', 'Nelayan', '082139922321', 'MAYA APSARI', 'Wirausaha', '082139922399');
 
 -- --------------------------------------------------------
 
@@ -361,6 +399,22 @@ CREATE TABLE `tbl_prestasi` (
   `berkas_prestasi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_prestasi`
+--
+
+INSERT INTO `tbl_prestasi` (`nim`, `nama_prestasi`, `tahun_prestasi`, `berkas_prestasi`) VALUES
+('170211100003', 'Juara 2 Inter Varsity English Debate', '2018', 'file.jpg'),
+('170221100121', 'Juara 1 Asian English Olympics', '2017', 'file.jpg'),
+('170231100031', 'Juara 1 Hipotalamus Competition/ Lomba Karya Tulis Ilmiah', '2018', 'file.jpg'),
+('170331100201', 'Juara 3 International Biotechnology Competition and Exhibition (IBCEx)', '2017', 'file.jpg'),
+('170411100003', 'jurara 1 International Conference on Engineering, Technology and Innovation Japan 2015', '2018', 'file.jpg'),
+('170411100061', 'jurara 2 Busan Choral Festival and Competition', '2017', 'file.jpg'),
+('170511100038', 'Juara 1 Lomba KTI Health Student Fair UAD', '2017', 'file.jpg'),
+('170521100076', 'Juara 3 Scientific Fair', '2017', 'file.jpg'),
+('170611100032', 'Juara 1 Kejuaraan Nasional Catur Ke-45', '2018', 'file.jpg'),
+('170621100021', 'juara 2 IPSF Critical Essay Competition', '2018', 'file.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -402,6 +456,22 @@ CREATE TABLE `tbl_riwayatsakit` (
   `ket_penyakit` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_riwayatsakit`
+--
+
+INSERT INTO `tbl_riwayatsakit` (`nim`, `nama_penyakit`, `ket_penyakit`) VALUES
+('170211100003', 'Anemia', 'Sakit Kepala & Cepat lelah'),
+('170221100121', 'Asma', 'Sesak nafas & Gejala batuk'),
+('170331100201', 'Insomnia', 'Susah Tidur'),
+('170511100038', 'Leukimia', 'Demam & Mimisan'),
+('170611100032', 'Pneumonia', 'Diare & Nyeri Dada'),
+('170621100021', 'TBC', 'Batuk berdarah & Demam'),
+('170231100031', 'Batuk Berdarah', 'Nyeri dada &\r\nDemam'),
+('170411100003', 'Biduran', 'Gatal-Gatal Pada Kulit'),
+('170521100076', 'Bronkitis', 'Mual & Diare'),
+('170411100061', 'Migrain', 'mual & muntah');
+
 -- --------------------------------------------------------
 
 --
@@ -420,6 +490,22 @@ CREATE TABLE `tbl_validasiberkas` (
   `kwitansi_karakter` char(1) DEFAULT NULL,
   `surat_dokter` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_validasiberkas`
+--
+
+INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES
+('170231100031', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170331100201', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170211100003', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170221100121', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170411100003', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170411100061', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170511100038', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170521100076', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170611100032', '1', '1', '1', '1', '1', '1', '0', '1', '0'),
+('170621100021', '1', '1', '1', '1', '1', '1', '0', '1', '0');
 
 --
 -- Indexes for dumped tables
@@ -535,44 +621,87 @@ ALTER TABLE `tbl_riwayatsakit`
 ALTER TABLE `tbl_validasiberkas`
   ADD KEY `FK_RELATIONSHIP_15` (`nim`);
 
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_berkas`
+--
 ALTER TABLE `tbl_berkas`
-  ADD CONSTRAINT `FK_RELATIONSHIP_14` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_14` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_hobi`
+--
 ALTER TABLE `tbl_hobi`
-  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_jurusan`
+--
 ALTER TABLE `tbl_jurusan`
-  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`id_fakultas`) REFERENCES `tbl_fakultas` (`id_fakultas`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`id_fakultas`) REFERENCES `tbl_fakultas` (`id_fakultas`);
 
+--
+-- Constraints for table `tbl_login`
+--
 ALTER TABLE `tbl_login`
-  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`id_level`) REFERENCES `tbl_level` (`id_level`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`id_level`) REFERENCES `tbl_level` (`id_level`);
 
+--
+-- Constraints for table `tbl_musahil`
+--
 ALTER TABLE `tbl_musahil`
-  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`username`) REFERENCES `tbl_login` (`username`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`username`) REFERENCES `tbl_login` (`username`);
 
+--
+-- Constraints for table `tbl_orangtua`
+--
 ALTER TABLE `tbl_orangtua`
-  ADD CONSTRAINT `FK_RELATIONSHIP_11` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_11` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_organisasi`
+--
 ALTER TABLE `tbl_organisasi`
-  ADD CONSTRAINT `FK_RELATIONSHIP_9` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_9` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_pendaftaran`
+--
 ALTER TABLE `tbl_pendaftaran`
-  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`id_kelamin`) REFERENCES `tbl_kelamin` (`id_kelamin`) ON UPDATE CASCADE ON DELETE RESTRICT,
-  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`id_jalurmasuk`) REFERENCES `tbl_jalurmasuk` (`id_jalurmasuk`) ON UPDATE CASCADE ON DELETE RESTRICT,
-  ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`id_jurusan`) REFERENCES `tbl_jurusan` (`id_jurusan`) ON UPDATE CASCADE ON DELETE RESTRICT,
-  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`username`) REFERENCES `tbl_login` (`username`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`id_kelamin`) REFERENCES `tbl_kelamin` (`id_kelamin`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`id_jalurmasuk`) REFERENCES `tbl_jalurmasuk` (`id_jalurmasuk`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`id_jurusan`) REFERENCES `tbl_jurusan` (`id_jurusan`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`username`) REFERENCES `tbl_login` (`username`);
 
+--
+-- Constraints for table `tbl_prestasi`
+--
 ALTER TABLE `tbl_prestasi`
-  ADD CONSTRAINT `FK_RELATIONSHIP_8` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_8` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_riwayatpendidikan`
+--
 ALTER TABLE `tbl_riwayatpendidikan`
-  ADD CONSTRAINT `FK_RELATIONSHIP_12` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT,
-  ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`id_pendidikan`) REFERENCES `tbl_pendidikan` (`id_pendidikan`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_12` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`id_pendidikan`) REFERENCES `tbl_pendidikan` (`id_pendidikan`);
 
+--
+-- Constraints for table `tbl_riwayatsakit`
+--
 ALTER TABLE `tbl_riwayatsakit`
-  ADD CONSTRAINT `FK_RELATIONSHIP_10` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_10` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 
+--
+-- Constraints for table `tbl_validasiberkas`
+--
 ALTER TABLE `tbl_validasiberkas`
-  ADD CONSTRAINT `FK_RELATIONSHIP_15` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`) ON UPDATE CASCADE ON DELETE RESTRICT;
+  ADD CONSTRAINT `FK_RELATIONSHIP_15` FOREIGN KEY (`nim`) REFERENCES `tbl_pendaftaran` (`nim`);
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
