@@ -121,7 +121,7 @@
 				<div class="col-lg-12">
 					<div class="main-card mb-3 card">
 						<div class="card-body">
-							<h5 class="card-title">Musahil</h5>
+							<h5 class="card-title">Tambah Musahil</h5>
 							<p>Pendaftaran & Manajemen data Musahil asrama</p>
 							<center>
 								<button class="btn btn-primary" style="width:100%; height:50px"><i class="fa fa-plus"></i> MUSAHIL</button>
