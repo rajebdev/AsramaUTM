@@ -29,4 +29,27 @@ class m_Admin extends CI_Model
         $this->db->query("UPDATE tbl_login SET password='" . $password1 . "' WHERE username='" . $this->session->userdata('username') . "' AND password='" . $password . "'");
         return $this->db->affected_rows();
     }
+    
+    public function fakultas()
+    {
+        $result = $this->db->query("SELECT * FROM tbl_fakultas order by id_fakultas")->result();
+        return $result;
+    }
+     
+    public function tambah_fakultas($data)
+    {
+        $this->db->insert('tbl_fakultas',array('id_fakultas'=>$data['id_fakultas'],'nama_fakultas'=>$data['nama_fakultas']));        
+    }
+
+    public function hapus_fakultas($data)
+    {
+        $this->db->delete('tbl_fakultas',array('id_fakultas'=>$data['id_fakultas']));    
+        var_dump($data);    
+    }
+
+    public function edit_fakultas($data)
+    {
+        $this->db->where('id_fakultas',$data['id_fakultas']);
+        $this->db->update('tbl_fakultas',['nama_fakultas'=>$data['nama_fakultas']]);        
+    }
 }
