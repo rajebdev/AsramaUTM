@@ -84,4 +84,114 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Silahkan login ulang, pastikan data anda sudah benar. Kalau masih error, hubungi panitia pendaftaran.</div>');
         redirect('.');
     }
-}
+
+    public function fakultas($action, $id_fakultas = 0, $name = '')
+    {
+        if ($action == 'view') {
+            $data['title'] = 'Dashboard User - View Data Fakultas';
+            $data['main']['menu'] = 'fakultas';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_admin->get_data();
+            $data['table'] = $this->m_admin->fakultas($data['user']);
+            if ($data['user']) {
+                $this->load->view('templates/dash_header', $data);
+                $this->load->view('templates/admin/fakultas');
+                $this->load->view('templates/dash_footer');
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Edit fakultas';
+            $data['main']['menu'] = 'Edit Pendaftaran';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            if ($data['user']) {
+                if ($this->form_validation->run()) { } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/admin/editfakultas');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else {
+            redirect('.');
+        }
+    }
+
+    
+    public function t_fakultas()
+	{
+        $data['title'] = 'Dashboard User - View Data Fakultas';
+        $data['main']['menu'] = 'fakultas';
+        $data['level'] = $this->session->userdata('id_level');
+        $data['user'] = $this->m_admin->get_data();
+        $data['table'] = $this->m_admin->fakultas($data['user']);
+        $post=$this->input->post();
+        $proses=0;
+        if(isset($post['id_fakultas'])&& isset( $post['nama_fakultas'])){
+        if  ($post['id_fakultas']!=''&& $post['nama_fakultas']!=''){
+            $data['id_fakultas']=$post['id_fakultas'];
+            $data['nama_fakultas']=$post['nama_fakultas'];
+            $this->m_admin->tambah_fakultas($data);
+            $proses=1;
+        }
+    }
+    $data['table'] = $this->m_admin->fakultas($data['user']);
+         $this->load->view('templates/dash_header', $data);
+        if($proses==1){
+         $this->load->view('templates/admin/fakultas');
+        }
+        else {
+         $this->load->view('templates/admin/tambah_fakultas');
+        }
+         $this->load->view('templates/dash_footer');
+    }
+    
+    public function e_fakultas($id_fakultas)
+	{
+        $data['title'] = 'Dashboard User - View Data Fakultas';
+        $data['main']['menu'] = 'fakultas';
+        $data['level'] = $this->session->userdata('id_level');
+        $data['user'] = $this->m_admin->get_data();
+        $data['id'] = $id_fakultas;
+        $post=$this->input->post();
+        $proses=0;
+        if(isset($post['id_fakultas'])&& isset( $post['nama_fakultas'])){
+        if  ($post['id_fakultas']!=''&& $post['nama_fakultas']!=''){
+            $data['id_fakultas']=$post['id_fakultas'];
+            $data['nama_fakultas']=$post['nama_fakultas'];
+            $this->m_admin->edit_fakultas($data);
+            $proses=1;
+        }
+    }
+    $data['table'] = $this->m_admin->fakultas($data['user']);
+         $this->load->view('templates/dash_header', $data);
+        if($proses==1){
+         $this->load->view('templates/admin/fakultas');
+        }
+        else {
+         $this->load->view('templates/admin/edit_fakultas' , $data);
+        }
+         $this->load->view('templates/dash_footer');
+        }
+
+    public function d_fakultas($id_fakultas)
+	{
+        $data['title'] = 'Dashboard User - View Data Fakultas';
+        $data['main']['menu'] = 'fakultas';
+        $data['level'] = $this->session->userdata('id_level');
+        $data['user'] = $this->m_admin->get_data();
+        $data['id'] = $id_fakultas;
+        $post=$this->input->post();
+        $proses=0;
+            $data['id_fakultas']=$id_fakultas;
+            $this->m_admin->hapus_fakultas($data);
+            $proses=1;
+    
+     $data['table'] = $this->m_admin->fakultas($data['user']);
+          $this->load->view('templates/dash_header', $data);
+          $this->load->view('templates/admin/fakultas');
+          $this->load->view('templates/dash_footer');
+        }
+    }
