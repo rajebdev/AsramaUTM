@@ -25,6 +25,7 @@ class m_Musahil extends CI_Model
         $date = date("Y-m-d H:i:s");
         $this->db->query("INSERT INTO `tbl_login` (`username`, `password`, `id_level`, `photo`, `user_created`) VALUES ('U" . $nim . "', '" . $password . "', '100', 'default.jpg', '" . $date . "');");
         $this->db->query("INSERT INTO tbl_pendaftaran VALUES ('" . $nim . "', '', '000', '0', '', '', '0', '', '', '', '', '" . $date . "', 'U" . $nim . "')");
+        $this->db->query("INSERT INTO tbl_orangtua VALUES ('" . $nim . "', '', '', '', '', '', '')");
         return $this->db->affected_rows();
     }
 

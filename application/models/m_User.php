@@ -15,14 +15,43 @@ class m_User extends CI_Model
         return $result;
     }
 
+    public function addHobi($nim, $ket_hobi)
+    {
+        $this->db->query("INSERT INTO tbl_hobi VALUES('', '" . $nim . "', '" . $ket_hobi . "')");
+        return $this->db->affected_rows();
+    }
+
     public function readHobi($nim)
     {
         return $this->db->query("SELECT id, ket_hobi FROM tbl_hobi WHERE nim='" . $nim . "'")->result();
     }
 
+    public function readHobiWhere($nim, $id, $ket)
+    {
+        return $this->db->query("SELECT id, ket_hobi FROM tbl_hobi WHERE nim='" . $nim . "' AND id=" . $id . " AND ket_hobi='" . $ket . "'")->row_array();
+    }
+
+    public  function updateHobiWhere($nim, $id, $ket, $ket_baru)
+    {
+        $this->db->query("UPDATE tbl_hobi SET ket_hobi='" . $ket_baru . "' WHERE nim='" . $nim . "' AND id=" . $id . " AND ket_hobi='" . $ket . "'");
+        return $this->db->affected_rows();
+    }
+
+    public function deleteHobiWhere($nim, $id, $ket)
+    {
+        $this->db->query("DELETE FROM tbl_hobi WHERE nim='" . $nim . "' AND id=" . $id . " AND ket_hobi='" . $ket . "'");
+        return $this->db->affected_rows();
+    }
+
     public function readOrangtua($nim)
     {
         return $this->db->query("SELECT nama_ayah, pekerjaan_ayah, telp_ayah,nama_ibu, pekerjaan_ibu, telp_ibu FROM tbl_orangtua WHERE nim='" . $nim . "'")->row_array();
+    }
+
+    public function updateOrangtua($nim, $nama_ayah, $pekerjaan_ayah, $telp_ayah, $nama_ibu, $pekerjaan_ibu, $telp_ibu)
+    {
+        $this->db->query("UPDATE tbl_orangtua SET nama_ayah='" . $nama_ayah . "', pekerjaan_ayah='" . $pekerjaan_ayah . "', telp_ayah='" . $telp_ayah . "', nama_ibu='" . $nama_ibu . "', pekerjaan_ibu='" . $pekerjaan_ibu . "', telp_ibu='" . $telp_ibu . "' WHERE nim='" . $nim . "'");
+        return $this->db->affected_rows();
     }
 
     public function readOrganisasi($nim)

@@ -138,7 +138,7 @@ class User extends CI_Controller
         }
     }
 
-    public function hobi($action, $id = 0, $name = '')
+    public function hobi($action, $id = 0, $ket = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Hobi';
@@ -153,17 +153,62 @@ class User extends CI_Controller
             } else {
                 $this->_not_found_user();
             }
-        } else if ($action == 'edit') {
-            $data['title'] = 'Dashboard User - Edit Pendaftaran';
-            $data['main']['menu'] = 'Edit Pendaftaran';
+        } else if ($action == 'add') {
+            $data['title'] = 'Dashboard User - Tambah Hobi';
+            $data['main']['menu'] = 'hobi';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
             if ($data['user']) {
-                if ($this->form_validation->run()) { } else {
+                $this->form_validation->set_rules('ket_hobi', 'Hobi', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $ket_hobi = $this->input->post('ket_hobi');
+                    if ($this->m_user->addHobi($data['user']['nim'], $ket_hobi)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal</div>');
+                    }
+                    redirect('user/hobi/view');
+                } else {
                     $this->load->view('templates/dash_header', $data);
-                    $this->load->view('templates/pendaftaran_edit');
+                    $this->load->view('templates/user/hobi_add');
                     $this->load->view('templates/dash_footer');
                 }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Edit Hobi';
+            $data['main']['menu'] = 'hobi';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            $data['hobi'] = $this->m_user->readHobiWhere($data['user']['nim'], $id, base64_decode($ket));
+            if ($data['user']) {
+                $this->form_validation->set_rules('ket_hobi', 'Hobi', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $ket_hobi = $this->input->post('ket_hobi');
+                    if ($this->m_user->updateHobiWhere($data['user']['nim'], $id, base64_decode($ket), $ket_hobi)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Update Data Gagal</div>');
+                    }
+                    redirect('user/hobi/view');
+                } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/user/hobi_edit');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'delete') {
+            $data['user'] = $this->m_user->get_data();
+            if ($data['user']) {
+                if ($this->m_user->deleteHobiWhere($data['user']['nim'], $id, base64_decode($ket))) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete Data Berhasil.</div>');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete Data Gagal</div>');
+                }
+                redirect('user/hobi/view');
             } else {
                 $this->_not_found_user();
             }
@@ -172,7 +217,7 @@ class User extends CI_Controller
         }
     }
 
-    public function orangtua($action, $id = 0, $name = '')
+    public function orangtua($action)
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Orang Tua';
@@ -182,7 +227,7 @@ class User extends CI_Controller
             $data['table'] = $this->m_user->readOrangtua($data['user']['nim']);
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
-                $this->load->view('templates/user/dataTableOrangtua');
+                $this->load->view('templates/user/orangtua_view');
                 $this->load->view('templates/dash_footer');
             } else {
                 $this->_not_found_user();
@@ -192,10 +237,28 @@ class User extends CI_Controller
             $data['main']['menu'] = 'Edit Pendaftaran';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
+            $data['table'] = $this->m_user->readOrangtua($data['user']['nim']);
             if ($data['user']) {
-                if ($this->form_validation->run()) { } else {
+                $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'trim|required');
+                $this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'trim|required');
+                $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'trim|required');
+                $this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $nama_ayah = $this->input->post('nama_ayah');
+                    $pekerjaan_ayah = $this->input->post('pekerjaan_ayah');
+                    $telp_ayah = $this->input->post('telp_ayah');
+                    $nama_ibu = $this->input->post('nama_ibu');
+                    $pekerjaan_ibu = $this->input->post('pekerjaan_ibu');
+                    $telp_ibu = $this->input->post('telp_ibu');
+                    if ($this->m_user->updateOrangtua($data['user']['nim'], $nama_ayah, $pekerjaan_ayah, $telp_ayah, $nama_ibu, $pekerjaan_ibu, $telp_ibu)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Update Data Gagal</div>');
+                    }
+                    redirect('user/orangtua/view');
+                } else {
                     $this->load->view('templates/dash_header', $data);
-                    $this->load->view('templates/pendaftaran_edit');
+                    $this->load->view('templates/user/orangtua_edit');
                     $this->load->view('templates/dash_footer');
                 }
             } else {

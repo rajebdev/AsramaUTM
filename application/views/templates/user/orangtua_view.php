@@ -26,27 +26,27 @@
                             <tbody>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">Nama Ayah</th>
-                                    <td class="word-wrap"><?= isset($table['nama_ayah']) ? $table['nama_ayah'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['nama_ayah'] != '' ? $table['nama_ayah'] : '-' ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">pekerjaan ayah</th>
-                                    <td class="word-wrap"><?= isset($table['pekerjaan_ayah']) ? $table['pekerjaan_ayah'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['pekerjaan_ayah'] != '' ? $table['pekerjaan_ayah'] : '-' ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">no telp ayah</th>
-                                    <td class="word-wrap"><?= isset($table['telp_ayah']) ? $table['telp_ayah'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['telp_ayah'] != '' ? $table['telp_ayah'] : '-' ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">nama ibu</th>
-                                    <td class="word-wrap"><?= isset($table['nama_ibu']) ? $table['nama_ibu'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['nama_ibu'] != '' ? $table['nama_ibu'] : '-' ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">pekerjaan ibu</th>
-                                    <td class="word-wrap"><?= isset($table['pekerjaan_ibu']) ? $table['pekerjaan_ibu'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['pekerjaan_ibu'] != '' ? $table['pekerjaan_ibu'] : '-' ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-uppercase" style="width: 50%;">no telp ibu</th>
-                                    <td class="word-wrap"><?= isset($table['telp_ibu']) ? $table['telp_ibu'] : 'Belum Ada Data' ?></td>
+                                    <td class="word-wrap"><?= $table['telp_ibu'] != '' ? $table['telp_ibu'] : '-' ?></td>
                                 </tr>
                             </tbody>
                         </table>
