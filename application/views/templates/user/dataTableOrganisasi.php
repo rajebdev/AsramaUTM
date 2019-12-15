@@ -65,8 +65,8 @@
                                         <td><?= $row->tahun_selesai ?></td>
                                         <td class="text-center">
                                             <!-- <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
-                                            <a href="<?= base_url('user/organisasi/edit/') . $row->id . '/' . $row->nama_organisasi ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('user/organisasi/delete/') . $row->id . '/' . $row->nama_organisasi ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url('user/organisasi/edit/') . $row->id . '/' . base64_encode($row->nama_organisasi) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('user/organisasi/delete/') . $row->id . '/' . base64_encode($row->nama_organisasi) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

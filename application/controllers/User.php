@@ -274,17 +274,51 @@ class User extends CI_Controller
         }
     }
 
-    public function riwayatpendidikan($action, $id = 0, $name = '')
+    public function pendidikan($action, $id = 0, $name = '')
     {
         if ($action == 'view') {
-            $data['title'] = 'Dashboard User - View Data Prestasi';
-            $data['main']['menu'] = 'prestasi';
+            $data['title'] = 'Dashboard User - View Data Pendidikan';
+            $data['main']['menu'] = 'pendidikan';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
-            $data['table'] = $this->m_user->readPrestasi($data['user']['nim']);
+            $data['table'] = $this->m_user->readRiwayatPendidikan($data['user']['nim']);
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
-                $this->load->view('templates/user/dataTablePrestasi');
+                $this->load->view('templates/user/dataTableRiwayatPendidikan');
+                $this->load->view('templates/dash_footer');
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Edit Pendaftaran';
+            $data['main']['menu'] = 'Edit Pendaftaran';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            if ($data['user']) {
+                if ($this->form_validation->run()) { } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/pendaftaran_edit');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else {
+            redirect('.');
+        }
+    }
+
+    public function riwayatsakit($action, $id = 0, $name = '')
+    {
+        if ($action == 'view') {
+            $data['title'] = 'Dashboard User - View Data Riwayat Sakit';
+            $data['main']['menu'] = 'riwayatsakit';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            $data['table'] = $this->m_user->readRiwayatSakit($data['user']['nim']);
+            if ($data['user']) {
+                $this->load->view('templates/dash_header', $data);
+                $this->load->view('templates/user/dataTableRiwayatSakit');
                 $this->load->view('templates/dash_footer');
             } else {
                 $this->_not_found_user();

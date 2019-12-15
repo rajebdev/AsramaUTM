@@ -65,8 +65,8 @@
                                         <td><?= $row->berkas_prestasi ?></td>
                                         <td class="text-center">
                                             <!-- <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
-                                            <a href="<?= base_url('user/hobi/edit/') . $row->id . '/' . $row->nama_prestasi ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('user/hobi/delete/') . $row->id . '/' . $row->nama_prestasi ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url('user/hobi/edit/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('user/hobi/delete/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

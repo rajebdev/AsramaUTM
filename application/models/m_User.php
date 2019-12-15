@@ -37,12 +37,12 @@ class m_User extends CI_Model
 
     public function readRiwayatPendidikan($nim)
     {
-        return $this->db->query("SELECT r.id_pendidikan, p.ket_pendidikan, r.nama_sekolah, r.tahun_lulus FROM tbl_riwayatpendidikan r, tbl_pendidikan p WHERE nim='" . $nim . "' AND r.id_pendidikan=p.id_pendidikan GROUP BY r.id")->result();
+        return $this->db->query("SELECT r.id, p.ket_pendidikan, r.nama_sekolah, r.tahun_lulus FROM tbl_riwayatpendidikan r, tbl_pendidikan p WHERE nim='" . $nim . "' AND r.id_pendidikan=p.id_pendidikan GROUP BY r.id")->result();
     }
 
     public function readRiwayatSakit($nim)
     {
-        return $this->db->query("SELECT nama_penyakit, ket_penyakit FROM tbl_riwayatsakit WHERE nim='" . $nim . "'")->result();
+        return $this->db->query("SELECT id, nama_penyakit, ket_penyakit FROM tbl_riwayatsakit WHERE nim='" . $nim . "'")->result();
     }
 
     public function readBerkas($nim)

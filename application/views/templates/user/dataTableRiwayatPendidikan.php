@@ -7,7 +7,7 @@
                     </i>
                 </div>
                 <div>Data <?= $main['menu']; ?>
-                    <div class="page-title-subheading">Hobiku Kebiasaanku
+                    <div class="page-title-subheading">Pendidikanku Nomer Satu
                     </div>
                 </div>
             </div>
@@ -22,8 +22,8 @@
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Tambah Hobi</div>
-                                <div class="widget-subheading">Hobiku</div>
+                                <div class="widget-heading">Tambah Riwayat Pendikan</div>
+                                <div class="widget-subheading">Riwayat Pendidikan</div>
                             </div>
                             <div class="widget-content-right">
                                 <div class="widget-numbers text-white">
@@ -45,7 +45,9 @@
                                     <?php
                                     $nama_column = array(
                                         'No',
-                                        'Hobi',
+                                        'Pendidikan',
+                                        'Nama Instansi',
+                                        'Tahun Lulus',
                                         'action'
                                     );
                                     foreach ($nama_column as $value) : ?>
@@ -58,11 +60,13 @@
                                 foreach ($table as $key => $row) : ?>
                                     <tr role="row" class="odd">
                                         <td tabindex="0" class="sorting_1"><?= $i ?></td>
-                                        <td><?= $row->ket_hobi ?></td>
+                                        <td><?= $row->ket_pendidikan ?></td>
+                                        <td><?= $row->nama_sekolah ?></td>
+                                        <td><?= $row->tahun_lulus ?></td>
                                         <td class="text-center">
                                             <!-- <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
-                                            <a href="<?= base_url('user/hobi/edit/') . $row->id ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('user/hobi/delete/') . $row->id ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url('user/pendidikan/edit/') . $row->id . '/' . base64_encode($row->nama_sekolah) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('user/pendidikan/delete/') . $row->id . '/' . base64_encode($row->nama_sekolah) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;
