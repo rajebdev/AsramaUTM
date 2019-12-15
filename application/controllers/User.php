@@ -277,7 +277,7 @@ class User extends CI_Controller
     public function pendidikan($action, $id = 0, $name = '')
     {
         if ($action == 'view') {
-            $data['title'] = 'Dashboard User - View Data Pendidikan';
+            $data['title'] = 'Dashboard User - View Data Prestasi';
             $data['main']['menu'] = 'pendidikan';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
