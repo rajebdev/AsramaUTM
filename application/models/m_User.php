@@ -143,6 +143,29 @@ class m_User extends CI_Model
         return $this->db->query("SELECT id, nama_penyakit, ket_penyakit FROM tbl_riwayatsakit WHERE nim='" . $nim . "'")->result();
     }
 
+    public function readRiwayatSakitWhere($nim, $id, $name)
+    {
+        return $this->db->query("SELECT id, nama_penyakit, ket_penyakit FROM tbl_riwayatsakit WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_penyakit='" . $name . "'")->row_array();
+    }
+
+    public function addRiwayatSakit($nim, $nama_penyakit, $ket_penyakit)
+    {
+        $this->db->query("INSERT INTO tbl_riwayatsakit VALUES('', '" . $nim . "', '" . $nama_penyakit . "', '" . $ket_penyakit . "')");
+        return $this->db->affected_rows();
+    }
+
+    public function updateRiwayatSakit($nim, $id, $name, $nama_penyakit, $ket_penyakit)
+    {
+        $this->db->query("UPDATE tbl_riwayatsakit SET nama_penyakit='" . $nama_penyakit . "', ket_penyakit='" . $ket_penyakit . "' WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_penyakit='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
+    public function deleteRiwayatSakitWhere($nim, $id, $name)
+    {
+        $this->db->query("DELETE FROM tbl_riwayatsakit WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_penyakit='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
     public function readBerkas($nim)
     {
         return $this->db->query("SELECT pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter, FROM tbl_berkas WHERE nim='" . $nim . "'")->result();

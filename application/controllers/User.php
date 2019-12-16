@@ -551,26 +551,24 @@ class User extends CI_Controller
             }
         } else if ($action == 'add') {
             $data['title'] = 'Dashboard User - Tambah Data Organisasi';
-            $data['main']['menu'] = 'organisasi';
+            $data['main']['menu'] = 'riwayatsakit';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
             if ($data['user']) {
-                $this->form_validation->set_rules('nama_organisasi', 'Nama Organisasi', 'trim|required');
-                $this->form_validation->set_rules('tahun_masuk', 'Tahun Masuk', 'trim|required');
-                $this->form_validation->set_rules('tahun_selesai', 'Tahun Selesai', 'trim|required');
+                $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'trim|required');
+                $this->form_validation->set_rules('ket_penyakit', 'Keterangan Tambahan', 'trim|required');
                 if ($this->form_validation->run()) {
-                    $nama_organisasi = $this->input->post('nama_organisasi');
-                    $tahun_masuk = $this->input->post('tahun_masuk');
-                    $tahun_selesai = $this->input->post('tahun_selesai');
-                    if ($this->m_user->addOrganisasi($data['user']['nim'], $nama_organisasi, $tahun_masuk, $tahun_selesai)) {
+                    $nama_penyakit = $this->input->post('nama_penyakit');
+                    $ket_penyakit = $this->input->post('ket_penyakit');
+                    if ($this->m_user->addRiwayatSakit($data['user']['nim'], $nama_penyakit, $ket_penyakit)) {
                         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah Data Berhasil.</div>');
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal</div>');
                     }
-                    redirect('user/organisasi/view');
+                    redirect('user/riwayatsakit/view');
                 } else {
                     $this->load->view('templates/dash_header', $data);
-                    $this->load->view('templates/user/organisasi_add');
+                    $this->load->view('templates/user/riwayatsakit_add');
                     $this->load->view('templates/dash_footer');
                 }
             } else {
@@ -578,27 +576,25 @@ class User extends CI_Controller
             }
         } else if ($action == 'edit') {
             $data['title'] = 'Dashboard User - Edit Data Organisasi';
-            $data['main']['menu'] = 'organisasi';
+            $data['main']['menu'] = 'riwayatsakit';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
-            $data['table'] = $this->m_user->readOrganisasiWhere($data['user']['nim'], $id, base64_decode($name));
+            $data['table'] = $this->m_user->readRiwayatSakitWhere($data['user']['nim'], $id, base64_decode($name));
             if ($data['user']) {
-                $this->form_validation->set_rules('nama_organisasi', 'Nama Organisasi', 'trim|required');
-                $this->form_validation->set_rules('tahun_masuk', 'Tahun Masuk', 'trim|required');
-                $this->form_validation->set_rules('tahun_selesai', 'Tahun Selesai', 'trim|required');
+                $this->form_validation->set_rules('nama_penyakit', 'Nama Penyakit', 'trim|required');
+                $this->form_validation->set_rules('ket_penyakit', 'Keterangan Tambahan', 'trim|required');
                 if ($this->form_validation->run()) {
-                    $nama_organisasi = $this->input->post('nama_organisasi');
-                    $tahun_masuk = $this->input->post('tahun_masuk');
-                    $tahun_selesai = $this->input->post('tahun_selesai');
-                    if ($this->m_user->updateOrganisasiWhere($data['user']['nim'], $id, base64_decode($name), $nama_organisasi, $tahun_masuk, $tahun_selesai)) {
-                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update Data Berhasil.</div>');
+                    $nama_penyakit = $this->input->post('nama_penyakit');
+                    $ket_penyakit = $this->input->post('ket_penyakit');
+                    if ($this->m_user->updateRiwayatSakit($data['user']['nim'], $id, base64_decode($name), $nama_penyakit, $ket_penyakit)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah Data Berhasil.</div>');
                     } else {
-                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Update Data Gagal</div>');
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal</div>');
                     }
-                    redirect('user/organisasi/view');
+                    redirect('user/riwayatsakit/view');
                 } else {
                     $this->load->view('templates/dash_header', $data);
-                    $this->load->view('templates/user/organisasi_edit');
+                    $this->load->view('templates/user/riwayatsakit_edit');
                     $this->load->view('templates/dash_footer');
                 }
             } else {
@@ -607,7 +603,7 @@ class User extends CI_Controller
         } else if ($action == 'delete') {
             $data['user'] = $this->m_user->get_data();
             if ($data['user']) {
-                if ($this->m_user->deleteOrganisasiWhere($data['user']['nim'], $id, base64_decode($name))) {
+                if ($this->m_user->deleteRiwayatSakitWhere($data['user']['nim'], $id, base64_decode($name))) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete Data Berhasil.</div>');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete Data Gagal</div>');

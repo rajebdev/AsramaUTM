@@ -27,7 +27,7 @@
                         <div class="widget-content-right">
                             <div class="widget-numbers text-white">
                                 <span>
-                                    <a class="btn btn-info">Tambah</a>
+                                    <a href="<?= base_url('user/riwayatsakit/add') ?>" class="btn btn-info">Tambah</a>
                                 </span>
                             </div>
                         </div>
@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        <?= $this->session->flashdata('message'); ?>
         <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row">
                 <div class="col-sm-12">
