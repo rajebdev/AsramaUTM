@@ -159,6 +159,90 @@ class Musahil extends CI_Controller
         }
     }
 
+    public function validasi_berkas($action = 'view', $nim = '')
+    {
+        if ($action == 'view') {
+            $data['title'] = 'Dashboard Musahil - View Data Token';
+            $data['main']['menu'] = 'Token';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_musahil->get_data();
+            $data['table'] = $this->m_musahil->get_data_token();
+            if ($data['user']) {
+                $this->load->view('templates/dash_header', $data);
+                $this->load->view('templates/dataTableValidasi');
+                $this->load->view('templates/dash_footer');
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'add') {
+            $data['title'] = 'Dashboard User - Tambah Data Token';
+            $data['main']['menu'] = 'Token';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_musahil->get_data();
+            if ($data['user']) {
+                $this->form_validation->set_rules('nim', 'NIM', 'trim|required');
+                $this->form_validation->set_rules('token', 'TOKEN', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $nim = $this->input->post('nim');
+                    $password = md5($this->input->post('token'));
+                    if ($this->m_musahil->add_token($nim, $password)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal</div>');
+                    }
+                    echo "NIM = " . $nim;
+                    echo "<br>PASSWORD = " . $this->input->post('token');
+                    // redirect('musahil/manage_token/view');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Update Data Token';
+            $data['main']['menu'] = 'Token';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_musahil->get_data();
+            $data['nim'] = base64_decode($nim);
+            if ($data['user']) {
+                $this->form_validation->set_rules('nim', 'NIM', 'trim|required');
+                $this->form_validation->set_rules('token', 'TOKEN', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $nimbaru = $this->input->post('nim');
+                    $password = md5($this->input->post('token'));
+                    if ($this->m_musahil->updateToken(base64_decode($nim), $nimbaru, $password) > 0) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Ubah Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Ubah Data Gagal</div>');
+                    }
+
+                    echo "NIM = " . $nim;
+                    echo "<br>PASSWORD = " . $this->input->post('token');
+                    // redirect('musahil/manage_token/view');
+                } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/musahil/token_edit');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'delete') {
+            $data['user'] = $this->m_musahil->get_data();
+            if ($data['user']) {
+                if ($this->m_musahil->delete_token(base64_decode($nim)) > 0) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete Data Berhasil.</div>');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete Data Gagal</div>');
+                }
+                redirect('musahil/manage_token/view');
+            } else {
+                $this->_not_found_user();
+            }
+        } else {
+            redirect('.');
+        }
+    }
+
     private function _not_found_user()
     {
         $this->session->unset_userdata('username');
