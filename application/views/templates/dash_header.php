@@ -569,7 +569,7 @@
 								<li>
 									<a href="<?= base_url('admin/manage/penghuni') ?>" <?= $main['menu'] == 'Penghuni' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-users">
-										</i>Data Penghuni
+										</i>Data Pendaftar
 									</a>
 								</li>
 								<li>
