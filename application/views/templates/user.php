@@ -21,25 +21,6 @@
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4">
-				<div class="card mb-3 widget-content bg-grow-early">
-					<div class="widget-content-wrapper text-white">
-						<div class="widget-content-left">
-							<div class="widget-heading">Status Pendaftaran</div>
-							<div class="widget-subheading">Lihat Status Pendaftaran</div>
-						</div>
-						<div class="widget-content-right">
-							<div class="widget-numbers text-white">
-								<span>
-									<a href="<?= base_url('user/pendaftaran/status') ?>" class="btn btn-info">
-										GO
-									</a>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-xl-4">
 				<div class="card mb-3 widget-chart card-hover-shadow-2x">
 					<div class="icon-wrapper border-light rounded">
 						<div class="icon-wrapper-bg bg-light"></div>
@@ -107,7 +88,7 @@
 								<h5 class="card-title">Upload Berkas</h5>
 								<p>Lengkapi persyaratan pendaftaran</p>
 								<center>
-									<a href="<?= base_url('user/pendaftaran/edit') ?>" class="btn btn-primary" style="width:100%;"><i class="fa fa-upload"></i> Berkas Pendaftaran</a>
+									<a href="<?= base_url('user/berkas/view') ?>" class="btn btn-primary" style="width:100%;"><i class="fa fa-upload"></i> Berkas Pendaftaran</a>
 								</center>
 							</div>
 						</div>

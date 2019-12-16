@@ -75,7 +75,7 @@ class User extends CI_Controller
         }
     }
 
-    public function profile($action)
+    public function profile($action = 'view')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Pendaftaran';
@@ -138,7 +138,7 @@ class User extends CI_Controller
         }
     }
 
-    public function hobi($action, $id = 0, $ket = '')
+    public function hobi($action = 'view', $id = 0, $ket = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Hobi';
@@ -217,7 +217,7 @@ class User extends CI_Controller
         }
     }
 
-    public function orangtua($action)
+    public function orangtua($action = 'view')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Orang Tua';
@@ -269,7 +269,7 @@ class User extends CI_Controller
         }
     }
 
-    public function organisasi($action, $id = 0, $name = '')
+    public function organisasi($action = 'view', $id = 0, $name = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Organisasi';
@@ -356,7 +356,7 @@ class User extends CI_Controller
         }
     }
 
-    public function prestasi($action, $id = 0, $name = '')
+    public function prestasi($action = 'view', $id = 0, $name = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Prestasi';
@@ -445,7 +445,7 @@ class User extends CI_Controller
         }
     }
 
-    public function pendidikan($action, $id = 0, $name = '')
+    public function pendidikan($action = 'view', $id = 0, $name = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Prestasi';
@@ -534,7 +534,7 @@ class User extends CI_Controller
         }
     }
 
-    public function riwayatsakit($action, $id = 0, $name = '')
+    public function riwayatsakit($action = 'view', $id = 0, $name = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Riwayat Sakit';
@@ -617,7 +617,7 @@ class User extends CI_Controller
         }
     }
 
-    public function berkas($action, $kolom = '', $namafile = '')
+    public function berkas($action = 'view', $kolom = '', $namafile = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Berkas';
