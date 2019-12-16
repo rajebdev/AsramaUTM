@@ -371,17 +371,72 @@ class User extends CI_Controller
             } else {
                 $this->_not_found_user();
             }
-        } else if ($action == 'edit') {
-            $data['title'] = 'Dashboard User - Edit Pendaftaran';
-            $data['main']['menu'] = 'Edit Pendaftaran';
+        } else if ($action == 'add') {
+            $data['title'] = 'Dashboard User - Tambah Data Prestasi';
+            $data['main']['menu'] = 'prestasi';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
             if ($data['user']) {
-                if ($this->form_validation->run()) { } else {
+                $this->form_validation->set_rules('nama_prestasi', 'Nama Prestasi', 'trim|required');
+                $this->form_validation->set_rules('tahun_prestasi', 'Tahun Prestasi', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $nama_prestasi = $this->input->post('nama_prestasi');
+                    $tahun_prestasi = $this->input->post('tahun_prestasi');
+                    $berkas_prestasi = $this->_uploadImagePrestasi($data['user']['nim'] . "_" . $nama_prestasi);
+                    if ($this->m_user->addPrestasi($data['user']['nim'], $nama_prestasi, $tahun_prestasi, $berkas_prestasi)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tambah Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tambah Data Gagal</div>');
+                    }
+                    redirect('user/prestasi/view');
+                } else {
                     $this->load->view('templates/dash_header', $data);
-                    $this->load->view('templates/pendaftaran_edit');
+                    $this->load->view('templates/user/prestasi_add');
                     $this->load->view('templates/dash_footer');
                 }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Edit Data Prestasi';
+            $data['main']['menu'] = 'prestasi';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            $data['table'] = $this->m_user->readPrestasiWhere($data['user']['nim'], $id, base64_decode($name));
+            if ($data['user']) {
+                $this->form_validation->set_rules('nama_prestasi', 'Nama Prestasi', 'trim|required');
+                $this->form_validation->set_rules('tahun_prestasi', 'Tahun Prestasi', 'trim|required');
+                if ($this->form_validation->run()) {
+                    $nama_prestasi = $this->input->post('nama_prestasi');
+                    $tahun_prestasi = $this->input->post('tahun_prestasi');
+                    if (!empty($_FILES['berkas_prestasi']['name'])) {
+                        $berkas_prestasi = $this->_uploadImagePrestasi($data['user']['nim'] . "_" . $nama_prestasi);
+                    } else {
+                        $berkas_prestasi = $data['table']['berkas_prestasi'];
+                    }
+                    if ($this->m_user->updatePrestasiWhere($data['user']['nim'], $id, base64_decode($name), $nama_prestasi, $tahun_prestasi, $berkas_prestasi)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Update Data Gagal</div>');
+                    }
+                    redirect('user/prestasi/view');
+                } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/user/prestasi_edit');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'delete') {
+            $data['user'] = $this->m_user->get_data();
+            if ($data['user']) {
+                if ($this->m_user->deletePrestasiWhere($data['user']['nim'], $id, base64_decode($name))) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete Data Berhasil.</div>');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete Data Gagal</div>');
+                }
+                redirect('user/prestasi/view');
             } else {
                 $this->_not_found_user();
             }
@@ -456,6 +511,23 @@ class User extends CI_Controller
         } else {
             redirect('.');
         }
+    }
+
+    private function _uploadImagePrestasi($namafile)
+    {
+        $config['upload_path']          = './upload/prestasi/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['file_name']            = $namafile;
+        $config['overwrite']            = true;
+        $config['max_size']             = 1024; // 1MB
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('berkas_prestasi')) {
+            return $this->upload->data("file_name");
+        }
+
+        return "default.jpg";
     }
 
     private function _not_found_user()

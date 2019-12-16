@@ -87,6 +87,29 @@ class m_User extends CI_Model
         return $this->db->query("SELECT id, nama_prestasi, tahun_prestasi, berkas_prestasi FROM tbl_prestasi WHERE nim='" . $nim . "'")->result();
     }
 
+    public function addPrestasi($nim, $name, $tahun, $berkas)
+    {
+        $this->db->query("INSERT INTO tbl_prestasi VALUES('', '" . $nim . "', '" . $name . "', '" . $tahun . "', '" . $berkas . "')");
+        return $this->db->affected_rows();
+    }
+
+    public function readPrestasiWhere($nim, $id, $name)
+    {
+        return $this->db->query("SELECT id, nama_prestasi, tahun_prestasi, berkas_prestasi FROM tbl_prestasi WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_prestasi='" . $name . "'")->row_array();
+    }
+
+    public function updatePrestasiWhere($nim, $id, $name, $name_baru, $tahun, $berkas)
+    {
+        return $this->db->query("UPDATE tbl_prestasi SET nama_prestasi='" . $name_baru . "', tahun_prestasi='" . $tahun . "', berkas_prestasi='" . $berkas . "' WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_prestasi='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
+    public function deletePrestasiWhere($nim, $id, $name)
+    {
+        $this->db->query("DELETE FROM tbl_prestasi WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_prestasi='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
     public function readRiwayatPendidikan($nim)
     {
         return $this->db->query("SELECT id, r.id_pendidikan, p.ket_pendidikan, r.nama_sekolah, r.tahun_lulus FROM tbl_riwayatpendidikan r, tbl_pendidikan p WHERE nim='" . $nim . "' AND r.id_pendidikan=p.id_pendidikan GROUP BY r.id")->result();

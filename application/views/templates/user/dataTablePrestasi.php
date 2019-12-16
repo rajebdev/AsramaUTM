@@ -28,7 +28,7 @@
                             <div class="widget-content-right">
                                 <div class="widget-numbers text-white">
                                     <span>
-                                        <a class="btn btn-info">Tambah</a>
+                                        <a href="<?= base_url('user/prestasi/add') ?>" class="btn btn-info">Tambah</a>
                                     </span>
                                 </div>
                             </div>
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            <?= $this->session->flashdata('message'); ?>
             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
                     <div class="col-sm-12">
@@ -62,11 +63,11 @@
                                         <td tabindex="0" class="sorting_1"><?= $i ?></td>
                                         <td><?= $row->nama_prestasi ?></td>
                                         <td><?= $row->tahun_prestasi ?></td>
-                                        <td><?= $row->berkas_prestasi ?></td>
+                                        <td><img src="<?= base_url('upload/prestasi/' . $row->berkas_prestasi) ?>" alt="<?= $row->berkas_prestasi ?>" width="100px" height="auto"></td>
                                         <td class="text-center">
                                             <!-- <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
-                                            <a href="<?= base_url('user/hobi/edit/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url('user/hobi/delete/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url('user/prestasi/edit/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('user/prestasi/delete/') . $row->id . '/' . base64_encode($row->nama_prestasi) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;
