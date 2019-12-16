@@ -115,6 +115,29 @@ class m_User extends CI_Model
         return $this->db->query("SELECT id, r.id_pendidikan, p.ket_pendidikan, r.nama_sekolah, r.tahun_lulus FROM tbl_riwayatpendidikan r, tbl_pendidikan p WHERE nim='" . $nim . "' AND r.id_pendidikan=p.id_pendidikan GROUP BY r.id")->result();
     }
 
+    public function addRiwayatPendidikan($nim, $id_pendidikan, $nama_sekolah, $tahun_lulus)
+    {
+        $this->db->query("INSERT INTO tbl_riwayatpendidikan VALUES('', '" . $nim . "', '" . $id_pendidikan . "', '" . $nama_sekolah . "', '" . $tahun_lulus . "')");
+        return $this->db->affected_rows();
+    }
+
+    public function readRiwayatPendidikanWhere($nim, $id, $name)
+    {
+        return $this->db->query("SELECT r.id, r.id_pendidikan, p.ket_pendidikan, r.nama_sekolah, r.tahun_lulus FROM tbl_riwayatpendidikan r, tbl_pendidikan p WHERE r.nim='" . $nim . "' AND r.id=" . $id . " AND r.nama_sekolah='" . $name . "' AND r.id_pendidikan=p.id_pendidikan GROUP BY r.id")->row_array();
+    }
+
+    public function updateRiwayatPendidikan($nim, $id, $name, $jenjangpendidikan, $nama_sekolah, $tahun_lulus)
+    {
+        $this->db->query("UPDATE tbl_riwayatpendidikan SET id_pendidikan='" . $jenjangpendidikan . "', nama_sekolah='" . $nama_sekolah . "', tahun_lulus='" . $tahun_lulus . "' WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_sekolah='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
+    public function deleteRiwayatPendidikan($nim, $id, $name)
+    {
+        $this->db->query("DELETE FROM tbl_riwayatpendidikan  WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_sekolah='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
     public function readRiwayatSakit($nim)
     {
         return $this->db->query("SELECT id, nama_penyakit, ket_penyakit FROM tbl_riwayatsakit WHERE nim='" . $nim . "'")->result();
@@ -125,9 +148,9 @@ class m_User extends CI_Model
         return $this->db->query("SELECT pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter, FROM tbl_berkas WHERE nim='" . $nim . "'")->result();
     }
 
-    public function readfakultas($nim)
+    public function readPendidikan()
     {
-        return $this->db->query("SELECT pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter, FROM tbl_berkas WHERE nim='" . $nim . "'")->result();
+        return $this->db->query("SELECT id_pendidikan, ket_pendidikan FROM tbl_pendidikan")->result();
     }
 
     public function set_password($password, $password1)
