@@ -168,7 +168,13 @@ class m_User extends CI_Model
 
     public function readBerkas($nim)
     {
-        return $this->db->query("SELECT pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter, FROM tbl_berkas WHERE nim='" . $nim . "'")->result();
+        return $this->db->query("SELECT pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter FROM tbl_berkas WHERE nim='" . $nim . "'")->row_array();
+    }
+
+    public function updateBerkas($nim, $kolom, $name, $nama_berkas)
+    {
+        $this->db->query("UPDATE tbl_berkas SET " . $kolom . "='" . $nama_berkas . "' WHERE nim='" . $nim . "' AND " . $kolom . "='" . $name . "'");
+        return $this->db->affected_rows();
     }
 
     public function readPendidikan()

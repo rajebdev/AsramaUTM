@@ -575,7 +575,7 @@ class User extends CI_Controller
                 $this->_not_found_user();
             }
         } else if ($action == 'edit') {
-            $data['title'] = 'Dashboard User - Edit Data Organisasi';
+            $data['title'] = 'Dashboard User - Edit Data Riwayat Sakit';
             $data['main']['menu'] = 'riwayatsakit';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
@@ -617,6 +617,54 @@ class User extends CI_Controller
         }
     }
 
+    public function berkas($action, $kolom = '', $namafile = '')
+    {
+        if ($action == 'view') {
+            $data['title'] = 'Dashboard User - View Data Berkas';
+            $data['main']['menu'] = 'berkas';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            $data['table'] = $this->m_user->readBerkas($data['user']['nim']);
+            if ($data['user']) {
+                $this->load->view('templates/dash_header', $data);
+                $this->load->view('templates/user/berkas_view');
+                $this->load->view('templates/dash_footer');
+            } else {
+                $this->_not_found_user();
+            }
+        } else if ($action == 'edit') {
+            $data['title'] = 'Dashboard User - Edit Data Berkas';
+            $data['main']['menu'] = 'riwayatsakit';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->m_user->get_data();
+            $data['kolom'] = $kolom;
+            $data['table'] = $this->m_user->readBerkas($data['user']['nim']);
+            if ($data['user']) {
+                if (isset($_POST['submit'])) {
+                    if (!empty($_FILES[$kolom]['name'])) {
+                        $berkas_name = $this->_uploadImage($kolom, $data['user']['nim']);
+                    } else {
+                        $berkas_name = $data['table'][$kolom];
+                    }
+                    if ($this->m_user->updateBerkas($data['user']['nim'], $kolom, base64_decode($namafile), $berkas_name) || !empty($_FILES[$kolom]['name'])) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Operasi Data Berhasil.</div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Operasi Data Gagal</div>');
+                    }
+                    redirect('user/berkas/view');
+                } else {
+                    $this->load->view('templates/dash_header', $data);
+                    $this->load->view('templates/user/berkas_edit');
+                    $this->load->view('templates/dash_footer');
+                }
+            } else {
+                $this->_not_found_user();
+            }
+        } else {
+            redirect('.');
+        }
+    }
+
     private function _uploadImagePrestasi($namafile)
     {
         $config['upload_path']          = './upload/prestasi/';
@@ -628,6 +676,23 @@ class User extends CI_Controller
         $this->load->library('upload', $config);
 
         if ($this->upload->do_upload('berkas_prestasi')) {
+            return $this->upload->data("file_name");
+        }
+
+        return "default.jpg";
+    }
+
+    private function _uploadImage($folder, $namafile)
+    {
+        $config['upload_path']          = './upload/' . $folder . '/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['file_name']            = $namafile;
+        $config['overwrite']            = true;
+        $config['max_size']             = 1024; // 1MB
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload($folder)) {
             return $this->upload->data("file_name");
         }
 
