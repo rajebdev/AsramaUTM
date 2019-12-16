@@ -625,6 +625,7 @@ class User extends CI_Controller
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->m_user->get_data();
             $data['table'] = $this->m_user->readBerkas($data['user']['nim']);
+            $data['table_validasi'] = $this->m_user->readValidasiBerkas($data['user']['nim']);
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
                 $this->load->view('templates/user/berkas_view');
