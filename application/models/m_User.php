@@ -59,6 +59,29 @@ class m_User extends CI_Model
         return $this->db->query("SELECT id, nama_organisasi, tahun_masuk, tahun_selesai FROM tbl_organisasi WHERE nim='" . $nim . "'")->result();
     }
 
+    public function addOrganisasi($nim, $name, $tahun_masuk, $tahun_selesai)
+    {
+        $this->db->query("INSERT INTO tbl_organisasi VALUES('', '" . $nim . "', '" . $name . "', '" . $tahun_masuk . "', '" . $tahun_selesai . "')");
+        return $this->db->affected_rows();
+    }
+
+    public function readOrganisasiWhere($nim, $id, $name)
+    {
+        return $this->db->query("SELECT id, nama_organisasi, tahun_masuk, tahun_selesai FROM tbl_organisasi WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_organisasi='" . $name . "'")->row_array();
+    }
+
+    public  function updateOrganisasiWhere($nim, $id, $name, $nama_organisasi, $tahun_masuk, $tahun_selesai)
+    {
+        $this->db->query("UPDATE tbl_organisasi SET nama_organisasi='" . $nama_organisasi . "', tahun_masuk='" . $tahun_masuk . "', tahun_selesai='" . $tahun_selesai . "' WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_organisasi='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
+    public function deleteOrganisasiWhere($nim, $id, $name)
+    {
+        $this->db->query("DELETE FROM tbl_organisasi WHERE nim='" . $nim . "' AND id=" . $id . " AND nama_organisasi='" . $name . "'");
+        return $this->db->affected_rows();
+    }
+
     public function readPrestasi($nim)
     {
         return $this->db->query("SELECT id, nama_prestasi, tahun_prestasi, berkas_prestasi FROM tbl_prestasi WHERE nim='" . $nim . "'")->result();
