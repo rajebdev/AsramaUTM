@@ -908,7 +908,7 @@
 	<div id="newToken" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<form method="post" id="formToken">
+				<form method="post" id="formToken" action="<?= base_url(($level == 1337 ? 'admin/' : 'musahil/') . 'manage_token/add') ?>">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLongTitle">Token Baru</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -936,7 +936,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						<button id="tokensubmit" type="button" class="btn btn-primary">Dapatkan Token</button>
+						<button class="btn btn-primary">Dapatkan Token</button>
 					</div>
 				</form>
 			</div>

@@ -29,9 +29,16 @@ class m_Musahil extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function updateToken($nim, $nimbaru, $password)
+    {
+        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array()['username'];
+        $this->db->query("UPDATE tbl_login SET password='" . $password . "' WHERE username='" . $username . "'");
+        return $this->db->affected_rows();
+    }
+
     public function delete_token($nim)
     {
-        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array();
+        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array()['username'];
         $this->db->query("DELETE FROM tbl_berkas WHERE nim='" . $nim . "'");
         $this->db->query("DELETE FROM tbl_hobi WHERE nim='" . $nim . "'");
         $this->db->query("DELETE FROM tbl_orangtua WHERE nim='" . $nim . "'");

@@ -600,7 +600,7 @@
 								</li>
 								<li class="app-sidebar__heading">Pendaftaran</li>
 								<li>
-									<a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil') . '/manage/token') ?>" <?= $main['menu'] == 'Token' ? 'class="mm-active"' : ''; ?>>
+									<a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil') . '/manage_token/view') ?>" <?= $main['menu'] == 'Token' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-users">
 										</i>Get Token Daftar
 									</a>
