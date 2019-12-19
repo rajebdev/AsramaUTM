@@ -453,7 +453,9 @@ CREATE TABLE `tbl_pendaftaran` (
   `kode_kelurahan` varchar(10) DEFAULT NULL,
   `kode_pos` char(5) DEFAULT NULL,
   `tanggal_mendaftar` datetime DEFAULT NULL,
-  `username` varchar(32) DEFAULT NULL
+  `username` varchar(32) DEFAULT NULL,
+  `validasi` char(1) DEFAULT NULL,
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
