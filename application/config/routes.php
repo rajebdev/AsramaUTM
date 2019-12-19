@@ -64,6 +64,7 @@ $route["Admin/validasi_berkas/view"] = "musahil/validasi_berkas/view";
 $route["Admin/manage_token/edit/(:any)"] = "musahil/manage_token/edit/$1";
 $route["Admin/manage_token/delete/(:any)"] = "musahil/manage_token/delete/$1";
 $route["Admin/validasi_berkas/validasi/(:any)"] = "musahil/validasi_berkas/validasi/$1";
+$route["Admin/validasi_berkas/view/(:any)"] = "musahil/validasi_berkas/view/$1";
 $route["Admin/validasi_berkas/unvalidasi/(:any)"] = "musahil/validasi_berkas/unvalidasi/$1";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

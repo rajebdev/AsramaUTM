@@ -347,12 +347,21 @@ class Musahil extends CI_Controller
                 $this->_not_found_user();
             }
         } else if ($action == 'view') {
+            $nim = base64_decode($nim);
             $data['title'] = 'Dashboard Musahil - View Data Validasi';
             $data['main']['menu'] = 'Validasi';
             $data['level'] = $this->session->userdata('id_level');
             $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
-            $data['table'] = $this->m_musahil->get_data_validasi();
-            $data['nim'] = base64_decode($nim);
+            $data['pendaftar'] = $this->m_musahil->get_data_pendaftar($nim);
+            $data['orangtua']  = $this->m_user->readOrangtua($nim);
+            $data['hobi']  = $this->m_user->readHobi($nim);
+            $data['organisasi']  = $this->m_user->readOrganisasi($nim);
+            $data['prestasi']  = $this->m_user->readPrestasi($nim);
+            $data['pendidikan']  = $this->m_user->readRiwayatPendidikan($nim);
+            $data['riwayatsakit']  = $this->m_user->readRiwayatSakit($nim);
+            $data['berkas']  = $this->m_user->readBerkas($nim);
+
+            $data['nim'] = $nim;
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
                 $this->load->view('templates/musahil/validasi_view');

@@ -44,7 +44,7 @@
                                         <td><?= $row->nama ?></td>
                                         <td><?= $row->validasi == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah Validasi</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum Validasi</div>'; ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
+                                            <a href="<?= base_url(($level == 1337 ? 'Admin/' : 'musahil/') . 'validasi_berkas/view/' . base64_encode($row->nim)) ?>" class=" btn btn-primary text-white"><i class="fas fa-eye"></i></a>
                                             <?php if ($row->validasi != 1) { ?>
                                                 <a href="<?= base_url(($level == 1337 ? 'Admin/' : 'musahil/') . 'validasi_berkas/validasi/' . base64_encode($row->nim)) ?>" class="btn btn-success" type="button" onclick="return confirm('Yakin menvalidasi ?')"><i class="fas fa-check"></i></a>
                                             <?php } else { ?>

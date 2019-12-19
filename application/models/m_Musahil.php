@@ -80,4 +80,10 @@ class m_Musahil extends CI_Model
         $this->db->query("UPDATE tbl_pendaftaran SET validasi='0' WHERE nim='" . $nim . "'");
         return $this->db->affected_rows();
     }
+
+    public function get_data_pendaftar($nim)
+    {
+        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array()['username'];
+        return $this->db->query('SELECT p.nama, p.nim, j.ket_jurusan, f.nama_fakultas, s.ket_jalurmasuk, p.tempat_lahir, p.tanggal_lahir, k.ket_kelamin, p.no_telp, p.alamat, p.validasi FROM tbl_login l, tbl_pendaftaran p, tbl_level v, tbl_fakultas f, tbl_jurusan j, tbl_kelamin k, tbl_jalurmasuk s WHERE l.username="' . $username . '" AND l.username=p.username AND l.id_level=v.id_level AND p.id_jurusan=j.id_jurusan AND j.id_fakultas=f.id_fakultas AND p.id_kelamin=k.id_kelamin AND p.id_jalurmasuk=s.id_jalurmasuk GROUP BY l.username')->row_array();
+    }
 }
