@@ -459,7 +459,7 @@
 									</li>
 								<?php } ?>
 								<?php
-								if ($level == 1000) { ?>
+								if ($level == 999) { ?>
 									<li class="hyper" id="profile">
 										<a href="<?= base_url($mylevel . "/edit_profile") ?>">
 											<i class="metismenu-icon pe-7s-user">
