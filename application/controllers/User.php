@@ -114,7 +114,7 @@ class User extends CI_Controller
             <script>alert('Data Berhasil Diupdate')</script>
             <div class='alert alert-success'>Data Berhasil Diupdate</div>
             ");
-                redirect($this->cek_level() . "/edit_profile");
+                redirect($this->cek_level() . "/profile/view");
             }
         } else {
             $this->session->set_flashdata('message', "
