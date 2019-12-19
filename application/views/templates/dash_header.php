@@ -606,7 +606,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil') . '/validasi_berkas/view') ?>" <?= $main['menu'] == 'Berkas' ? 'class="mm-active"' : ''; ?>>
+									<a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil') . '/validasi_berkas/view') ?>" <?= $main['menu'] == 'Validasi' ? 'class="mm-active"' : ''; ?>>
 										<i class="metismenu-icon pe-7s-users">
 										</i>Validasi Berkas
 									</a>

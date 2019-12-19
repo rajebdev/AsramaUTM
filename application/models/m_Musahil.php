@@ -26,6 +26,8 @@ class m_Musahil extends CI_Model
         $this->db->query("INSERT INTO `tbl_login` (`username`, `password`, `id_level`, `photo`, `user_created`) VALUES ('U" . $nim . "', '" . $password . "', '100', 'default.jpg', '" . $date . "');");
         $this->db->query("INSERT INTO tbl_pendaftaran VALUES ('" . $nim . "', '', '000', '0', '', '', '0', '', '', '', '', '" . $date . "', 'U" . $nim . "')");
         $this->db->query("INSERT INTO tbl_orangtua VALUES ('" . $nim . "', '', '', '', '', '', '')");
+        $this->db->query("INSERT INTO `tbl_berkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg', 'default.jpg')");
+        $this->db->query("INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
         return $this->db->affected_rows();
     }
 
@@ -50,5 +52,30 @@ class m_Musahil extends CI_Model
         $this->db->query("DELETE FROM tbl_pendaftaran WHERE nim='" . $nim . "'");
         $this->db->query("DELETE FROM tbl_login WHERE username='" . $username . "'");
         return $this->db->affected_rows() > 0;
+    }
+
+    public function get_username($nim)
+    {
+        $username = $this->db->query("SELECT p.username FROM tbl_pendaftaran p WHERE p.nim='" . $nim . "'")->row_array()['username'];
+        return $username;
+    }
+
+    public function get_data_validasi()
+    {
+        return $this->db->query("SELECT nim, pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter FROM tbl_validasiberkas")->result();
+    }
+
+    public function validasi_data_pendaftar($nim)
+    {
+        $this->db->query("DELETE FROM `tbl_validasiberkas` WHERE nim='" . $nim . "'");
+        $this->db->query("INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', '1', '1', '1', '1', '1', '1', '1', '1', '1')");
+        return $this->db->affected_rows();
+    }
+
+    public function unvalidasi_data_pendaftar($nim)
+    {
+        $this->db->query("DELETE FROM `tbl_validasiberkas` WHERE nim='" . $nim . "'");
+        $this->db->query("INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
+        return $this->db->affected_rows();
     }
 }
