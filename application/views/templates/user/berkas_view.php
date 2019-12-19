@@ -99,7 +99,7 @@
                                     <th scope="row" class="text-uppercase">kwitansi karakter</th>
                                     <td class="word-wrap"><img width="100px" src="<?= base_url('upload/kwitansi_karakter/' . $table['kwitansi_karakter']) ?>" alt="gambar berkas" /></td>
                                     <td><?= $table_validasi['kwitansi_karakter'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>';
-                                        s ?></td>
+                                        ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/kwitansi_karakter/' . $table['kwitansi_karakter']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
                                         <a href="<?= base_url('user/berkas/edit/kwitansi_karakter/' . base64_encode($table['kwitansi_karakter'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>

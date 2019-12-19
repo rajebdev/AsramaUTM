@@ -1,3 +1,4 @@
+
 <div class="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
     <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
         <div class="app-logo"></div>
@@ -7,7 +8,7 @@
         <div>
 
             <?= $this->session->flashdata('message'); ?>
-            <?php echo form_open_multipart("Asrama/login_proses")?>
+            <form class="user" method="post" action="<?= base_url(); ?>">
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="position-relative form-group"><input name="username" id="username" placeholder="Username here..." type="text" class="form-control" value="<?= set_value('username'); ?>">
@@ -22,7 +23,7 @@
                 </div>
                 <div class="divider row"></div>
                 <div class="d-flex align-items-center">
-                    <div class="ml-auto"><a href="<?= base_url("Asrama/")?>" class="btn-lg btn btn-link">Back To Home</a>
+                    <div class="ml-auto"><a href="javascript:void(0);" class="btn-lg btn btn-link">Recover Password</a>
                         <button class="btn btn-primary btn-lg">Login to Dashboard</button>
                     </div>
                 </div>
