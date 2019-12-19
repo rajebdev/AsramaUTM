@@ -55,7 +55,7 @@ class Asrama_model extends CI_Model
             $data['keterangan'] = "Gedung Perempuan";
         }
         $this->db->where("id_gedung", $id_gedung);
-        $udate = $this->db->update("tbl_gedung", $data);
+        $update = $this->db->update("tbl_gedung", $data);
         return $update;
     }
 
@@ -148,8 +148,8 @@ class Asrama_model extends CI_Model
 
     public function get_pendaftar()
     {
-        $sql = "select * FROM tbl_pendaftaran, tbl_jurusan
-                WHERE tbl_jurusan.id_jurusan = tbl_pendaftaran.id_jurusan and tbl_pendaftaran.nim not IN (SELECT tbl_penghuni_tetap.nim FROM tbl_penghuni_tetap)";
+        $sql = "SELECT * FROM tbl_pendaftaran, tbl_jurusan
+                WHERE tbl_jurusan.id_jurusan = tbl_pendaftaran.id_jurusan AND tbl_pendaftaran.validasi='1' and tbl_pendaftaran.nim not IN (SELECT tbl_penghuni_tetap.nim FROM tbl_penghuni_tetap)";
         $data = $this->db->query($sql)->result();
         return $data;
     }
