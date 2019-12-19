@@ -298,6 +298,7 @@ if ($level != "null") {
 
 <!-- =============================== -->
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/scripts/main.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/scripts/asrama.js"></script>
 <!-- <script src="http://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
