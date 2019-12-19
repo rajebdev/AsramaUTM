@@ -26,7 +26,7 @@
 						<div class="icon-wrapper-bg bg-light"></div>
 						<i class="lnr-apartment icon-gradient bg-sunny-morning"></i>
 					</div>
-					<div class="widget-numbers" style="font-size: 1.5rem;">Gedung D - Ruang 304</div>
+					<div class="widget-numbers" style="font-size: 1.5rem;">Gedung <?= $gedung != '' ? '<div class="mb-2 mr-2 badge badge-pill badge-success">' . $gedung . '</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">-</div>' ?>- Ruang <?= $kamar != '' ? '<div class="mb-2 mr-2 badge badge-pill badge-success">' . $kamar . '</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">-</div>' ?></div>
 					<div class="widget-subheading">Alamat Kamar</div>
 				</div>
 			</div>

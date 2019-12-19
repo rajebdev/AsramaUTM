@@ -198,4 +198,12 @@ class m_User extends CI_Model
         $this->db->query('UPDATE tbl_pendaftaran SET nama="' . $nama . '", nim="' . $nim . '", id_jurusan="' . $jurusan . '", id_jalurmasuk="' . $jalurmasuk . '", tempat_lahir="' . $tempat_lahir . '", tanggal_lahir="' . $tanggal_lahir . '", id_kelamin="' . $sex . '", no_telp="' . $notelp . '", alamat="' . $alamat . '" WHERE username="' . $this->session->userdata('username') . '"');
         return $this->db->affected_rows();
     }
+
+    public function get_kamar($nim)
+    {
+        $kamar = $this->db->query("SELECT kamar FROM tbl_penghuni_tetap WHERE nim='" . $nim . "'")->row_array();
+        if ($kamar)
+            return $kamar['kamar'];
+        return false;
+    }
 }

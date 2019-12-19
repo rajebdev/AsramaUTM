@@ -10,10 +10,6 @@ class Musahil extends CI_Controller
         $this->load->model('m_musahil');
         $this->load->model('m_user');
         $this->load->model("Asrama_model", "am");
-
-        if (!($this->session->userdata['id_level'] == 999 || $this->session->userdata['id_level'] == 1337)) {
-            redirect('.');
-        }
     }
 
     public function index2()
@@ -254,7 +250,7 @@ class Musahil extends CI_Controller
             $data['title'] = 'Dashboard Musahil - View Data Token';
             $data['main']['menu'] = 'Token';
             $data['level'] = $this->session->userdata('id_level');
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             $data['table'] = $this->m_musahil->get_data_token();
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
@@ -267,7 +263,7 @@ class Musahil extends CI_Controller
             $data['title'] = 'Dashboard User - Tambah Data Token';
             $data['main']['menu'] = 'Token';
             $data['level'] = $this->session->userdata('id_level');
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             if ($data['user']) {
                 $this->form_validation->set_rules('nim', 'NIM', 'trim|required');
                 $this->form_validation->set_rules('token', 'TOKEN', 'trim|required');
@@ -292,7 +288,7 @@ class Musahil extends CI_Controller
             $data['title'] = 'Dashboard User - Update Data Token';
             $data['main']['menu'] = 'Token';
             $data['level'] = $this->session->userdata('id_level');
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             $data['nim'] = base64_decode($nim);
             if ($data['user']) {
                 $this->form_validation->set_rules('nim', 'NIM', 'trim|required');
@@ -319,14 +315,14 @@ class Musahil extends CI_Controller
                 $this->_not_found_user();
             }
         } else if ($action == 'delete') {
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             if ($data['user']) {
                 if ($this->m_musahil->delete_token(base64_decode($nim)) > 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete Data Berhasil.</div>');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete Data Gagal</div>');
                 }
-                redirect('musahil/manage_token/view');
+                redirect($this->cek_level() . '/manage_token/view');
             } else {
                 $this->_not_found_user();
             }
@@ -341,7 +337,7 @@ class Musahil extends CI_Controller
             $data['title'] = 'Dashboard Musahil - View Data Validasi';
             $data['main']['menu'] = 'Validasi';
             $data['level'] = $this->session->userdata('id_level');
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             $data['table'] = $this->m_musahil->get_data_validasi();
             if ($data['user']) {
                 $this->load->view('templates/dash_header', $data);
@@ -351,26 +347,26 @@ class Musahil extends CI_Controller
                 $this->_not_found_user();
             }
         } else if ($action == 'validasi') {
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             if ($data['user']) {
                 if ($this->m_musahil->validasi_data_pendaftar(base64_decode($nim)) > 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Validasi Data Berhasil.</div>');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Validasi Data Gagal</div>');
                 }
-                redirect('musahil/validasi_berkas/view');
+                redirect($this->cek_level() . '/validasi_berkas/view');
             } else {
                 $this->_not_found_user();
             }
         } else if ($action == 'unvalidasi') {
-            $data['user'] = $this->m_musahil->get_data();
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             if ($data['user']) {
                 if ($this->m_musahil->unvalidasi_data_pendaftar(base64_decode($nim)) > 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">unValidasi Data Berhasil.</div>');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">unValidasi Data Gagal</div>');
                 }
-                redirect('musahil/validasi_berkas/view');
+                redirect($this->cek_level() . '/validasi_berkas/view');
             } else {
                 $this->_not_found_user();
             }
@@ -386,15 +382,6 @@ class Musahil extends CI_Controller
         $this->session->unset_userdata('id_level');
         $this->session->destroy;
         $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Silahkan login ulang, pastikan data anda sudah benar. Kalau masih error, hubungi panitia pendaftaran.</div>');
-        redirect('.');
-    }
-
-    public function delete($chapter, $id)
-    {
-        if ($chapter == 'token') {
-            $this->m_musahil->delete_token($id);
-            redirect(base_url(($this->session->userdata('id_level') == 1337 ? 'admin' : 'musahil') . '/manage/token'));
-        }
         redirect('.');
     }
 }

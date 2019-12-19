@@ -48,6 +48,8 @@ class User extends CI_Controller
             'menu' => 'Dashboard'
         ];
         $data['user'] = $this->m_user->get_data();
+        $data['gedung'] = substr($this->m_user->get_kamar($data['user']['nim']), 0, 1);
+        $data['kamar'] = substr($this->m_user->get_kamar($data['user']['nim']), 1);
         if ($data['user']) {
             $data['level'] = $this->session->userdata('id_level');
             $this->load->view('templates/dash_header', $data);

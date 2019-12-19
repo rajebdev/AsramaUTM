@@ -64,8 +64,8 @@
                                         <td><?= $row->password ?></td>
                                         <td class="text-center">
                                             <!-- <i class="btn btn-primary text-white"><i class="fas fa-eye"></i></a> -->
-                                            <a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil/') . 'manage_token/edit/' . base64_encode($row->nim)) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url(($level == 1337 ? 'admin' : 'musahil/') . 'manage_token/delete/' . base64_encode($row->nim)) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="<?= base_url(($level == 1337 ? 'Admin/' : 'musahil/') . 'manage_token/edit/' . base64_encode($row->nim)) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url(($level == 1337 ? 'Admin/' : 'musahil/') . 'manage_token/delete/' . base64_encode($row->nim)) ?>" class="btn btn-danger" onclick="return confirm('Yakin Menghapus ?')"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php $i++;
