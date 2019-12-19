@@ -346,6 +346,20 @@ class Musahil extends CI_Controller
             } else {
                 $this->_not_found_user();
             }
+        } else if ($action == 'view') {
+            $data['title'] = 'Dashboard Musahil - View Data Validasi';
+            $data['main']['menu'] = 'Validasi';
+            $data['level'] = $this->session->userdata('id_level');
+            $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
+            $data['table'] = $this->m_musahil->get_data_validasi();
+            $data['nim'] = base64_decode($nim);
+            if ($data['user']) {
+                $this->load->view('templates/dash_header', $data);
+                $this->load->view('templates/musahil/validasi_view');
+                $this->load->view('templates/dash_footer');
+            } else {
+                $this->_not_found_user();
+            }
         } else if ($action == 'validasi') {
             $data['user'] = $this->am->get_data_login($this->session->userdata('username'));
             if ($data['user']) {

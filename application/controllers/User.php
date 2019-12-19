@@ -720,7 +720,7 @@ class User extends CI_Controller
         }
     }
 
-    public function berkas($action = 'view', $kolom = '', $namafile = '')
+    public function berkas($action = 'view', $kolom = '')
     {
         if ($action == 'view') {
             $data['title'] = 'Dashboard User - View Data Berkas';
@@ -750,7 +750,7 @@ class User extends CI_Controller
                     } else {
                         $berkas_name = $data['table'][$kolom];
                     }
-                    if ($this->m_user->updateBerkas($data['user']['nim'], $kolom, base64_decode($namafile), $berkas_name) || !empty($_FILES[$kolom]['name'])) {
+                    if ($this->m_user->updateBerkas($data['user']['nim'], $kolom, $berkas_name) || !empty($_FILES[$kolom]['name'])) {
                         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Operasi Data Berhasil.</div>');
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Operasi Data Gagal</div>');

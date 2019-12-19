@@ -62,13 +62,14 @@ class m_Musahil extends CI_Model
 
     public function get_data_validasi()
     {
-        return $this->db->query("SELECT nim, pass_foto, surat_pernyataan, ktp_penghuni, ktp_ayah, ktp_ibu, kartu_keluarga, kwitansi_daftar, kwitansi_karakter, surat_dokter FROM tbl_validasiberkas")->result();
+        return $this->db->query("SELECT nim, nama, validasi FROM tbl_pendaftaran")->result();
     }
 
     public function validasi_data_pendaftar($nim)
     {
         $this->db->query("DELETE FROM `tbl_validasiberkas` WHERE nim='" . $nim . "'");
         $this->db->query("INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', '1', '1', '1', '1', '1', '1', '1', '1', '1')");
+        $this->db->query("UPDATE tbl_pendaftaran SET validasi='1' WHERE nim='" . $nim . "'");
         return $this->db->affected_rows();
     }
 
@@ -76,6 +77,7 @@ class m_Musahil extends CI_Model
     {
         $this->db->query("DELETE FROM `tbl_validasiberkas` WHERE nim='" . $nim . "'");
         $this->db->query("INSERT INTO `tbl_validasiberkas` (`nim`, `pass_foto`, `surat_pernyataan`, `ktp_penghuni`, `ktp_ayah`, `ktp_ibu`, `kartu_keluarga`, `kwitansi_daftar`, `kwitansi_karakter`, `surat_dokter`) VALUES ('" . $nim . "', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
+        $this->db->query("UPDATE tbl_pendaftaran SET validasi='0' WHERE nim='" . $nim . "'");
         return $this->db->affected_rows();
     }
 }

@@ -38,7 +38,7 @@
                                     <td><?= $table_validasi['pass_foto'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/pass_foto/' . $table['pass_foto']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/pass_foto/' . base64_encode($table['pass_foto'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/pass_foto') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -47,7 +47,7 @@
                                     <td><?= $table_validasi['surat_pernyataan'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/surat_pernyataan/' . $table['surat_pernyataan']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/surat_pernyataan/' . base64_encode($table['surat_pernyataan'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/surat_pernyataan') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,7 +56,7 @@
                                     <td><?= $table_validasi['ktp_penghuni'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/ktp_penghuni/' . $table['ktp_penghuni']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/ktp_penghuni/' . base64_encode($table['ktp_penghuni'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/ktp_penghuni') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -65,7 +65,7 @@
                                     <td><?= $table_validasi['ktp_ayah'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/ktp_ayah/' . $table['ktp_ayah']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/ktp_ayah/' . base64_encode($table['ktp_ayah'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/ktp_ayah') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,7 +74,7 @@
                                     <td><?= $table_validasi['ktp_ibu'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/ktp_ibu/' . $table['ktp_ibu']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/ktp_ibu/' . base64_encode($table['ktp_ibu'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/ktp_ibu') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -83,7 +83,7 @@
                                     <td><?= $table_validasi['kartu_keluarga'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/kartu_keluarga/' . $table['kartu_keluarga']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/kartu_keluarga/' . base64_encode($table['kartu_keluarga'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/kartu_keluarga') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -92,7 +92,7 @@
                                     <td><?= $table_validasi['kwitansi_daftar'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/kwitansi_daftar/' . $table['kwitansi_daftar']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/kwitansi_daftar/' . base64_encode($table['kwitansi_daftar'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/kwitansi_daftar') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -102,7 +102,7 @@
                                         ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/kwitansi_karakter/' . $table['kwitansi_karakter']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/kwitansi_karakter/' . base64_encode($table['kwitansi_karakter'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/kwitansi_karakter') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -111,7 +111,7 @@
                                     <td><?= $table_validasi['surat_dokter'] == 1 ? '<div class="mb-2 mr-2 badge badge-pill badge-success">Sudah</div>' : '<div class="mb-2 mr-2 badge badge-pill badge-danger">Belum</div>'; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('upload/surat_dokter/' . $table['surat_dokter']) ?>" class="btn btn-primary text-white"><i class="fas fa-eye"></i></a>
-                                        <a href="<?= base_url('user/berkas/edit/surat_dokter/' . base64_encode($table['surat_dokter'])) ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('user/berkas/edit/surat_dokter') ?>" class="btn btn-success" type="button"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
