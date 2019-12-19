@@ -57,6 +57,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Dashboard Admin';
         $data['menu'] = 'Dashboard Admin';
         $data['main'] = [
             'menu' => 'Dashboard'
